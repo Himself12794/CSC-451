@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lfreeglut -lopengl32 -lglu32
+LIBS := -lopengl32 -lfreeglut -lglu32
 

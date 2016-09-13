@@ -1,12 +1,12 @@
 #include <GL/glut.h>
 #include <math.h>
 
-#define N 24
+#define N 16
 #define PI 3.14159265358979323846
 #define WINDOW_NAME "Polygon [Philip]"
 
-extern const float LINE_COLOR[] 		= {1.0, 0.0, 0.0};
-extern const float BACKGROUND_COLOR[]	= {1.0, 1.0, 0.0};
+extern const float LINE_COLOR[] 		= {0.0, 1.0, 0.0};
+extern const float BACKGROUND_COLOR[]	= {0.0, 0.0, 0.0};
 
 void display() {
 

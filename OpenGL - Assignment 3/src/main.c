@@ -71,12 +71,13 @@ void keyboard_event(unsigned char key, GLint x, GLint y) {
 		break;
 	case 'f':
 		CYCLE_FG;
+		glutPostRedisplay();
 		break;
 	case 'b':
 		CYCLE_BG;
+		glutPostRedisplay();
 		break;
 	}
-	glutPostRedisplay();
 }
 
 void myinit () {

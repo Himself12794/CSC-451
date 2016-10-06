@@ -12,7 +12,7 @@ GLfloat fg[] = {1.0, 1.0, 1.0};
 int window_id = -1;
 
 /**
- * Converts array to numerical value for easier incrementation
+ * Converts array to numerical byte value for easier incrementation
  */
 unsigned char get_bits(GLfloat vals[]) {
 
@@ -26,7 +26,7 @@ unsigned char get_bits(GLfloat vals[]) {
  * Cycles the colors for an array.
  */
 void cycle_color(GLfloat changed[], GLfloat comparison[]) {
-	/* Treating the array as numerical value for easier iteration. */
+	/* Treating the array as numerical byte value for easier iteration. */
 	unsigned char c1 = get_bits(changed);
 	unsigned char c2 = get_bits(comparison);
 
@@ -92,38 +92,37 @@ void keyboard_event(unsigned char key, GLint x, GLint y) {
 	}
 }
 
-void myinit () {
-    /* set background color */
-    glClearColor(bg[0], bg[1], bg[2], 1.0);
-    glColor3fv(fg);                       /* set foreground color */
+void my_init() {
+    glClearColor(bg[0], bg[1], bg[2], 1.0);		/* set background color */
+    glColor3fv(fg);                       		/* set foreground color */
     glMatrixMode(GL_PROJECTION);                /* modify the PROJECTION matrix */
     glLoadIdentity();                           /* start with no transformation */
     gluOrtho2D(-1.0, 1.0, -1.0, 1.0); 			/* setting the viewing window (used in 2D) */
 }
 
-void mydisplay () {
-	glClearColor(bg[0], bg[1], bg[2], 1.0);	   /* set clear (background) color */
-    glClear(GL_COLOR_BUFFER_BIT);              /* clear the window */
-    glColor3fv(fg);							   /* set foreground color */
-    glBegin(GL_POLYGON); {                     /* define a polygon */
-        glVertex2f(-0.5, -0.5);                /* define vertices */
+void my_display() {
+	glClearColor(bg[0], bg[1], bg[2], 1.0);		/* set clear (background) color */
+    glClear(GL_COLOR_BUFFER_BIT);				/* clear the window */
+    glColor3fv(fg);								/* set foreground color */
+    glBegin(GL_POLYGON); {						/* define a polygon */
+        glVertex2f(-0.5, -0.5);					/* define vertices */
         glVertex2f(-0.5, 0.5);
         glVertex2f(0.5, 0.5);
         glVertex2f(0.5, -0.5);
-    } glEnd();                                 /* end of definition */
-    glFlush();                                 /* flush so the image appears */
+    } glEnd();									/* end of definition */
+    glFlush();									/* flush so the image appears */
 }
 
-int main (int argc, char** argv) {
-    glutInit(&argc, argv);                      /* initial the openGL system */
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);/* use single buffer and RGB mode */
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);						/* initial the openGL system */
+    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);	/* use single buffer and RGB mode */
     glutInitWindowSize(500, 500);               /* window size */
     glutInitWindowPosition(0, 0);               /* window position */
-    window_id = glutCreateWindow(WINDOW_NAME);  /* create window with given caption */
-    glutDisplayFunc(&mydisplay);				/* bind the display callback */
+    window_id = glutCreateWindow(WINDOW_NAME);	/* create window with given caption */
+    glutDisplayFunc(&my_display);				/* bind the display callback */
     glutMouseFunc(&mouse_event);				/* bind the mouse callback */
     glutKeyboardFunc(&keyboard_event);			/* bind the keyboard callback */
-    myinit();                                   /* initialize states and attributes */
-    glutMainLoop() ;                            /* enter the event loop */
+    my_init();									/* initialize states and attributes */
+    glutMainLoop();								/* enter the event loop */
 }
 

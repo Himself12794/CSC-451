@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#define WINDOW_NAME "Polygon [Philip]"
+#define WINDOW_NAME "Colors [Whiting]"
 #define CYCLE_BG cycle_color(bg_color, fg_color)
 #define CYCLE_FG cycle_color(fg_color, bg_color)
 

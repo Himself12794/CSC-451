@@ -1,6 +1,6 @@
 #include <GL/glut.h>
 #include <math.h>
-#include <windows.h>
+//#include <windows.h>
 
 #define PI 			3.14159265358979323846
 #define WINDOW_NAME "Polygon [Whiting]"
@@ -70,7 +70,7 @@ void reshape(int w, int h) {
 void timer(int x) {
 	if (!stopped) {
 		offset += 1 * magnitude;
-		display();
+		glutPostRedisplay();
 	}
 	glutTimerFunc(1000 / fps, timer, 0);
 }
@@ -104,13 +104,13 @@ void keyboard_event(unsigned char key, GLint x, GLint y) {
 
 	if (key >= '3' && key <= '9') {
 		n = key - '0';
-		display();
+		glutPostRedisplay();
 	} else if (key >= 'a' && key <= 'j') {
 		n = 10 + key - 'a';
-		display();
+		glutPostRedisplay();
 	} else if (key >= 'A' && key <= 'J') {
 		n = 10 + key - 'A';
-		display();
+		glutPostRedisplay();
 	}
 }
 
@@ -135,10 +135,11 @@ void init() {
  */
 int main(int argc, char** argv) {
 
+	/*
 	// Clearing the console windows for a windows application
 	ShowWindow(GetConsoleWindow(), SW_HIDE);
 	FreeConsole();
-
+	*/
 	glutInit(&argc, argv);
 	glutInitWindowSize(500, 500);
 	window_id = glutCreateWindow(WINDOW_NAME);

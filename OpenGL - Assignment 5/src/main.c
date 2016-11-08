@@ -54,12 +54,15 @@ void display() {
     glutSwapBuffers();
 }
 
-void do_rotate(point2 p) {
+/**
+ * Rotate 2d item around a certain point
+ */
+void do_rotate(float ang, point2 p) {
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glTranslatef(p[0], p[1], 0.0f);
-	glRotatef(angle, 0.0f, 0.0f, 1.0f);
+	glRotatef(ang, 0.0f, 0.0f, 1.0f);
 	glTranslatef(-p[0], -p[1], 0.0f);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -72,7 +75,10 @@ void triangle(point2 a, point2 b, point2 c, color fill) {
     mid [0] = (a[0] + b[0] + c[0]) / 3.0;
     mid [1] = (a[1] + b[1] + c[1]) / 3.0;
 
-    do_rotate(mid);
+    // Store matrix state
+    glPushMatrix();
+    // Do transformations and drawing
+    do_rotate(angle, mid);
     glColor3fv(fill);
     glBegin(GL_TRIANGLES);
     	glVertex2fv(a);
@@ -85,9 +91,15 @@ void triangle(point2 a, point2 b, point2 c, color fill) {
     glBegin(GL_POINTS);
     glVertex2fv(mid);
     glEnd();
+
+    // Restore matrix state
+    glPopMatrix();
     glPointSize(1.0);
 }
 
+/**
+ * Called every 0.1 seconds and increments the angle by 1 degree.
+ */
 void timer(int x) {
 	angle++;
 	glutPostRedisplay();

@@ -6,3 +6,4 @@
 /**/*.stackdump
 /**/Debug/
 /**/Release/
+/.metadata/

@@ -2,13 +2,9 @@
 #include <time.h>
 #include <GL\glut.h>
 
-#define PI 			3.14159265358979323846
-#define RADIANS(x)	x * PI / 180.0
-
 typedef GLfloat point2 [2];
 typedef GLfloat color [3];
 
-int fps = 10;
 point2 vertices [3][3];
 
 void triangle(point2 a, point2 b, point2 c, color fill);
@@ -95,7 +91,7 @@ void triangle(point2 a, point2 b, point2 c, color fill) {
 void timer(int x) {
 	angle++;
 	glutPostRedisplay();
-	glutTimerFunc(1000 / fps, timer, 0);
+	glutTimerFunc(100, timer, 0);
 }
 
 void initVertices() {

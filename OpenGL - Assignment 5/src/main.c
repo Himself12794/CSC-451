@@ -59,14 +59,6 @@ void display() {
  */
 void do_rotate(float ang, point2 p) {
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glTranslatef(p[0], p[1], 0.0f);
-	glRotatef(ang, 0.0f, 0.0f, 1.0f);
-	glTranslatef(-p[0], -p[1], 0.0f);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
 }
 
 void triangle(point2 a, point2 b, point2 c, color fill) {
@@ -77,9 +69,13 @@ void triangle(point2 a, point2 b, point2 c, color fill) {
 
     // Store matrix state
     glPushMatrix();
+
     // Do transformations and drawing
-    do_rotate(angle, mid);
+	glTranslatef(mid[0], mid[1], 0.0f);
+	glRotatef(angle, 0.0f, 0.0f, 1.0f);
+	glTranslatef(-mid[0], -mid[1], 0.0f);
     glColor3fv(fill);
+
     glBegin(GL_TRIANGLES);
     	glVertex2fv(a);
     	glVertex2fv(b);
@@ -108,7 +104,7 @@ void timer(int x) {
 
 void initVertices() {
     int i, j, k;
-    unsigned int iseed =(unsigned int) time (NULL);
+    unsigned int iseed = (unsigned int)time(NULL);
     srand(iseed);
 
     for (i = 0; i < 3; i++) {
